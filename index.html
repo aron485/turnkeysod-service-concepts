@@ -8,241 +8,236 @@
   *{margin:0;padding:0;box-sizing:border-box}
   img{max-width:100%;display:block}
   a{text-decoration:none;color:inherit}
-  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#0c1c13;color:#1c1a14}
-  /* ---------- Switcher shell ---------- */
-  .switcher{position:sticky;top:0;z-index:9999;background:#0c2817;border-bottom:2px solid #e8b23a;
-    display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 24px}
-  .switcher .brand{font-weight:900;color:#f6efdf;letter-spacing:.02em;font-size:15px}
-  .switcher .brand b{color:#e8b23a}
+  :root{--forest:#123a22;--forest-dk:#0c2817;--gold:#e8b23a;--clay:#c6512e;--cream:#f6efdf;--paper:#efe6d1;--ink:#1c1a14;--muted:#6e6a55}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--cream);color:var(--ink)}
+  .hd{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;letter-spacing:-.02em;line-height:1.02}
+
+  /* ---------- Switcher (meta toolbar) ---------- */
+  .switcher{position:sticky;top:0;z-index:9999;background:#081a0f;border-bottom:2px solid var(--gold);
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 24px}
+  .switcher .brand{font-weight:900;color:var(--cream);letter-spacing:.02em;font-size:14px}
+  .switcher .brand b{color:var(--gold)}
   .switcher .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
   .switcher button{font:inherit;font-weight:800;font-size:13px;cursor:pointer;border:1px solid rgba(246,239,223,.3);
-    background:transparent;color:#f6efdf;padding:9px 16px;border-radius:999px;transition:.15s}
-  .switcher button:hover{border-color:#e8b23a}
-  .switcher button.on{background:#e8b23a;color:#123a22;border-color:#e8b23a}
+    background:transparent;color:var(--cream);padding:8px 16px;border-radius:999px;transition:.15s}
+  .switcher button:hover{border-color:var(--gold)}
+  .switcher button.on{background:var(--gold);color:var(--forest);border-color:var(--gold)}
   .switcher button .n{opacity:.6;margin-right:6px}
-  .switcher button.on .n{opacity:.8}
+  .note{background:#10361f;color:rgba(246,239,223,.7);font-size:12.5px;text-align:center;padding:8px 20px}
+
+  /* ---------- Shared brand NAV (matches homepage) ---------- */
+  header.nav{background:var(--forest);box-shadow:0 1px 0 rgba(232,178,58,.18)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:12px 26px;max-width:1320px;margin:0 auto;gap:20px}
+  .logo img{height:58px;width:auto;display:block}
+  nav.links{display:flex;gap:26px;font-size:14px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;align-items:center}
+  nav.links>a,.has-drop>a{position:relative;color:var(--cream);padding:4px 0;transition:color .18s}
+  nav.links>a::after,.has-drop>a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+  nav.links>a:hover,.has-drop:hover>a{color:var(--gold)} nav.links>a:hover::after,.has-drop:hover>a::after{transform:scaleX(1)}
+  .has-drop{position:relative;display:inline-flex;align-items:center}
+  .has-drop .car{font-size:10px;margin-left:5px;display:inline-block;transition:transform .2s}
+  .has-drop:hover .car{transform:rotate(180deg)}
+  .has-drop .drop{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);background:#0f3420;border:1px solid rgba(232,178,58,.25);
+    border-radius:12px;padding:8px;min-width:230px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;transition:.2s;box-shadow:0 22px 44px -18px rgba(0,0,0,.65);z-index:40}
+  .has-drop:hover .drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .drop a{color:var(--cream);padding:9px 14px;border-radius:8px;font-size:13px;text-transform:none;letter-spacing:0;font-weight:700}
+  .drop a:hover{background:rgba(232,178,58,.12);color:var(--gold)}
+  .nav-actions{display:flex;align-items:center;gap:12px}
+  .nav-phone{display:inline-flex;align-items:center;gap:8px;color:var(--cream);font-weight:900;font-size:14px;letter-spacing:.02em;padding:11px 18px;border:1.5px solid rgba(246,239,223,.45);border-radius:999px;white-space:nowrap;transition:.2s}
+  .nav-phone svg{width:16px;height:16px;fill:currentColor}
+  .nav-phone:hover{border-color:var(--gold);color:var(--gold);background:rgba(232,178,58,.08)}
+  .nav-cta{background:var(--gold);color:var(--forest);padding:12px 22px;font-weight:900;font-size:14px;letter-spacing:.02em;text-transform:uppercase;border:0;cursor:pointer;border-radius:999px;transition:.2s}
+  .nav-cta:hover{filter:brightness(1.06);transform:translateY(-2px)}
+  @media(max-width:1040px){nav.links,.nav-phone{display:none}}
+
+  /* ---------- Shared brand FOOTER (matches homepage) ---------- */
+  footer{background:var(--forest-dk);color:#a9b7a0;font-size:14.5px;border-top:5px solid var(--gold)}
+  footer .wrap{max-width:1320px;margin:0 auto;padding:0 26px}
+  .foot-main{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.25fr;gap:42px;padding:62px 0 44px}
+  .foot-brand img{height:46px;width:auto;margin-bottom:20px}
+  .foot-brand p{line-height:1.65;color:#9fb093;max-width:32ch;margin:0 0 22px}
+  .foot-social{display:flex;gap:12px}
+  .foot-social a{width:40px;height:40px;border-radius:50%;background:#15311f;display:grid;place-items:center;transition:.2s}
+  .foot-social a:hover{background:var(--gold);transform:translateY(-3px)}
+  .foot-social svg{width:18px;height:18px;fill:var(--cream)}
+  .foot-social a:hover svg{fill:var(--forest)}
+  footer h4{font-family:"Arial Black",sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.02em;color:var(--gold);margin:2px 0 18px}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .foot-col a{color:#b9c6b0;transition:.18s}
+  .foot-col a:hover{color:var(--gold);padding-left:5px}
+  .foot-contact .big{font-family:"Arial Black",sans-serif;font-size:23px;color:var(--cream);display:inline-block;margin-bottom:14px}
+  .foot-contact p{margin:0 0 12px;line-height:1.55;color:#9fb093}
+  .foot-contact .fbtn{display:inline-block;margin-top:8px;background:var(--gold);color:var(--forest);font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:.03em;padding:12px 20px;border-radius:999px;border:0;cursor:pointer;transition:.2s}
+  .foot-contact .fbtn:hover{filter:brightness(1.06);transform:translateY(-2px)}
+  .foot-areas-wrap{border-top:1px solid #1c3a26;padding:30px 0}
+  .foot-areas-wrap h4{margin-bottom:16px}
+  .foot-areas{display:flex;flex-wrap:wrap;gap:9px}
+  .foot-areas a{background:#15311f;padding:7px 14px;border-radius:999px;font-size:13px;color:#b9c6b0;transition:.18s}
+  .foot-areas a:hover{background:var(--gold);color:var(--forest)}
+  .foot-bottom{border-top:1px solid #1c3a26;padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#7f9077}
+  .foot-bottom .fl{display:flex;gap:18px;flex-wrap:wrap}
+  .foot-bottom a:hover{color:var(--gold)}
+  @media(max-width:820px){.foot-main{grid-template-columns:1fr 1fr;gap:28px 22px}.foot-brand,.foot-contact{grid-column:1/-1}}
+  @media(max-width:520px){.foot-main{grid-template-columns:1fr}}
+
   .concept{display:none}
   .concept.show{display:block}
-  .note{background:#10361f;color:rgba(246,239,223,.7);font-size:12.5px;text-align:center;padding:9px 20px;letter-spacing:.02em}
+  .btnG{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:15px;padding:15px 30px;border-radius:999px;cursor:pointer;border:0;background:var(--gold);color:var(--forest);text-transform:uppercase;letter-spacing:.02em}
+  .btnO{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:15px;padding:15px 30px;border-radius:999px;cursor:pointer;background:transparent;border:2px solid rgba(246,239,223,.55);color:var(--cream)}
 
   /* ===================================================================
-     CONCEPT A — "BOLD PROCESS"  (maximalist NOLA landing, numbered timeline)
+     CONCEPT A — "BOLD PROCESS" (numbered timeline + feature cards)
      =================================================================== */
-  #cpt-a{--f:#14432a;--fd:#0b2415;--gold:#e8b23a;--clay:#c6512e;--cream:#f7f1e3;--paper:#efe6d1;--ink:#1b1a12;
-    background:var(--cream);color:var(--ink);font-family:system-ui,Arial,sans-serif}
-  #cpt-a .hd{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;letter-spacing:-.02em;line-height:1}
   #cpt-a .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
-  #cpt-a .btn{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:15px;padding:16px 30px;border-radius:999px;cursor:pointer;border:0}
-  #cpt-a .btn-gold{background:var(--gold);color:var(--f)}
-  #cpt-a .btn-ghost{background:transparent;border:2px solid rgba(246,239,223,.55);color:var(--cream)}
-  /* hero */
-  #cpt-a .aHero{position:relative;overflow:hidden;background:
-    radial-gradient(800px 500px at 88% -10%,rgba(232,178,58,.22),transparent 60%),
-    linear-gradient(155deg,var(--f),var(--fd))}
-  #cpt-a .aHero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding-top:70px;padding-bottom:78px}
+  #cpt-a .aHero{position:relative;overflow:hidden;background:radial-gradient(800px 500px at 88% -10%,rgba(232,178,58,.22),transparent 60%),linear-gradient(155deg,var(--forest),var(--forest-dk))}
+  #cpt-a .aHero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding:66px 28px 74px}
   #cpt-a .aKick{color:var(--gold);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px}
-  #cpt-a .aHero h1{color:var(--cream);font-size:clamp(44px,6vw,86px);margin:16px 0 18px}
+  #cpt-a .aHero h1{color:var(--cream);font-size:clamp(42px,5.6vw,80px);margin:16px 0 18px}
   #cpt-a .aHero h1 .out{-webkit-text-stroke:2px var(--gold);color:transparent}
-  #cpt-a .aHero p{color:rgba(246,239,223,.9);font-size:19px;line-height:1.6;max-width:46ch;margin-bottom:30px}
+  #cpt-a .aHero p{color:rgba(246,239,223,.9);font-size:19px;line-height:1.6;max-width:46ch;margin-bottom:28px}
   #cpt-a .aCtas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-  #cpt-a .aHero .phone{color:var(--cream);font-weight:900;font-size:18px}
-  #cpt-a .aHero .phone span{color:var(--gold)}
+  #cpt-a .aHero .phone{color:var(--cream);font-weight:900;font-size:17px}#cpt-a .aHero .phone span{color:var(--gold)}
   #cpt-a .aMedia{position:relative}
-  #cpt-a .aMedia .ph{border-radius:24px;overflow:hidden;border:6px solid rgba(247,241,227,.92);box-shadow:0 50px 90px -30px rgba(0,0,0,.75);transform:rotate(2deg)}
-  #cpt-a .aMedia .ph img{height:470px;width:100%;object-fit:cover}
-  #cpt-a .aSeal{position:absolute;left:-26px;bottom:-26px;width:138px;height:138px;border-radius:50%;background:var(--gold);color:var(--f);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:6px solid var(--fd);box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transform:rotate(-8deg)}
-  #cpt-a .aSeal b{font-family:"Arial Black",sans-serif;font-size:34px;line-height:1}
+  #cpt-a .aMedia .ph{border-radius:24px;overflow:hidden;border:6px solid rgba(246,239,223,.92);box-shadow:0 50px 90px -30px rgba(0,0,0,.75);transform:rotate(2deg)}
+  #cpt-a .aMedia .ph img{height:460px;width:100%;object-fit:cover}
+  #cpt-a .aSeal{position:absolute;left:-26px;bottom:-26px;width:134px;height:134px;border-radius:50%;background:var(--gold);color:var(--forest);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:6px solid var(--forest-dk);box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transform:rotate(-8deg)}
+  #cpt-a .aSeal b{font-family:"Arial Black",sans-serif;font-size:32px;line-height:1}
   #cpt-a .aSeal span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
-  /* stats */
-  #cpt-a .aStats{background:var(--fd);border-top:3px solid var(--gold)}
+  #cpt-a .aStats{background:var(--forest-dk);border-top:3px solid var(--gold)}
   #cpt-a .aStats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:0}
   #cpt-a .aStats .st{text-align:center;padding:30px 16px;border-right:1px solid rgba(246,239,223,.12);color:var(--cream)}
   #cpt-a .aStats .st:last-child{border-right:0}
   #cpt-a .aStats .st b{display:block;font-family:"Arial Black",sans-serif;color:var(--gold);font-size:42px;line-height:1}
   #cpt-a .aStats .st span{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.82;margin-top:8px}
-  /* process timeline */
-  #cpt-a .aProc{padding:86px 0;position:relative}
-  #cpt-a .aProc .lead{max-width:620px;margin-bottom:48px}
+  #cpt-a .aProc{padding:84px 0}
+  #cpt-a .aProc .lead{max-width:620px;margin-bottom:46px}
   #cpt-a .aProc .lead .k{color:var(--clay);font-weight:900;letter-spacing:.1em;text-transform:uppercase;font-size:13px}
-  #cpt-a .aProc .lead h2{font-size:clamp(32px,4.4vw,52px);color:var(--f);margin:10px 0 0}
-  #cpt-a .aSteps{position:relative;display:grid;gap:0}
+  #cpt-a .aProc .lead h2{font-size:clamp(32px,4.4vw,50px);color:var(--forest);margin-top:10px}
+  #cpt-a .aSteps{position:relative}
   #cpt-a .aSteps::before{content:"";position:absolute;left:33px;top:20px;bottom:20px;width:3px;background:linear-gradient(var(--gold),var(--clay))}
   #cpt-a .aStep{position:relative;display:grid;grid-template-columns:70px 1fr;gap:28px;padding:22px 0;align-items:start}
-  #cpt-a .aStep .num{width:70px;height:70px;border-radius:18px;background:var(--f);color:var(--gold);font-family:"Arial Black",sans-serif;font-size:24px;
-    display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 14px 30px -12px rgba(20,67,42,.6)}
-  #cpt-a .aStep h3{font-family:"Arial Black",sans-serif;font-size:21px;color:var(--f);margin-bottom:7px}
+  #cpt-a .aStep .num{width:70px;height:70px;border-radius:18px;background:var(--forest);color:var(--gold);font-family:"Arial Black",sans-serif;font-size:24px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 14px 30px -12px rgba(18,58,34,.6)}
+  #cpt-a .aStep h3{font-family:"Arial Black",sans-serif;font-size:21px;color:var(--forest);margin-bottom:7px}
   #cpt-a .aStep p{color:#45492f;line-height:1.7;max-width:62ch}
-  /* feature cards */
-  #cpt-a .aWhy{background:var(--f);padding:84px 0;position:relative;overflow:hidden}
+  #cpt-a .aWhy{background:var(--forest);padding:82px 0}
   #cpt-a .aWhy h2{color:var(--cream);font-family:"Arial Black",sans-serif;font-size:clamp(30px,4vw,46px);text-align:center;margin-bottom:12px}
-  #cpt-a .aWhy .sub{color:rgba(246,239,223,.72);text-align:center;max-width:56ch;margin:0 auto 46px;line-height:1.6}
+  #cpt-a .aWhy .sub{color:rgba(246,239,223,.72);text-align:center;max-width:56ch;margin:0 auto 44px;line-height:1.6}
   #cpt-a .aGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  #cpt-a .aCard{background:rgba(247,241,227,.06);border:1px solid rgba(232,178,58,.25);border-radius:18px;padding:30px 26px}
-  #cpt-a .aCard .ic{width:54px;height:54px;border-radius:14px;background:var(--gold);color:var(--f);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
+  #cpt-a .aCard{background:rgba(246,239,223,.06);border:1px solid rgba(232,178,58,.25);border-radius:18px;padding:30px 26px}
+  #cpt-a .aCard .ic{width:54px;height:54px;border-radius:14px;background:var(--gold);color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
   #cpt-a .aCard h3{color:var(--cream);font-family:"Arial Black",sans-serif;font-size:19px;margin-bottom:9px}
   #cpt-a .aCard p{color:rgba(246,239,223,.78);line-height:1.6;font-size:15px}
-  /* gallery */
-  #cpt-a .aGal{padding:84px 0}
-  #cpt-a .aGal h2{text-align:center;font-family:"Arial Black",sans-serif;color:var(--f);font-size:clamp(28px,3.6vw,42px);margin-bottom:34px}
+  #cpt-a .aGal{padding:82px 0}
+  #cpt-a .aGal h2{text-align:center;font-family:"Arial Black",sans-serif;color:var(--forest);font-size:clamp(28px,3.6vw,42px);margin-bottom:32px}
   #cpt-a .aGalGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   #cpt-a .aGalGrid img{height:210px;width:100%;object-fit:cover;border-radius:14px}
   #cpt-a .aGalGrid a:first-child{grid-column:span 2;grid-row:span 2}
   #cpt-a .aGalGrid a:first-child img{height:434px}
-  /* final cta */
-  #cpt-a .aCta{position:relative;padding:92px 0;text-align:center;color:var(--cream);
-    background:linear-gradient(rgba(12,36,21,.82),rgba(12,36,21,.9)),url('https://images.pexels.com/photos/8143668/pexels-photo-8143668.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200') center/cover}
-  #cpt-a .aCta h2{font-family:"Arial Black",sans-serif;font-size:clamp(34px,5vw,62px);margin-bottom:16px}
-  #cpt-a .aCta p{color:rgba(246,239,223,.9);font-size:19px;max-width:48ch;margin:0 auto 30px;line-height:1.6}
-  #cpt-a .aFoot{background:var(--fd);color:rgba(246,239,223,.65);text-align:center;padding:26px;font-size:13px}
-  #cpt-a .aFoot b{color:var(--gold)}
-  @media(max-width:900px){
-    #cpt-a .aHero .wrap{grid-template-columns:1fr;gap:40px}
-    #cpt-a .aStats .wrap{grid-template-columns:repeat(2,1fr)}
-    #cpt-a .aGrid{grid-template-columns:1fr}
-    #cpt-a .aGalGrid{grid-template-columns:repeat(2,1fr)}
-    #cpt-a .aGalGrid a:first-child{grid-column:span 2}
-    #cpt-a .aGalGrid a:first-child img,#cpt-a .aGalGrid img{height:200px}
-  }
+  #cpt-a .aCta{position:relative;padding:90px 0;text-align:center;color:var(--cream);background:linear-gradient(rgba(12,36,21,.82),rgba(12,36,21,.9)),url('https://images.pexels.com/photos/8143668/pexels-photo-8143668.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200') center/cover}
+  #cpt-a .aCta h2{font-family:"Arial Black",sans-serif;font-size:clamp(34px,5vw,60px);margin-bottom:16px}
+  #cpt-a .aCta p{color:rgba(246,239,223,.9);font-size:19px;max-width:48ch;margin:0 auto 28px;line-height:1.6}
+  @media(max-width:900px){#cpt-a .aHero .wrap{grid-template-columns:1fr;gap:40px}#cpt-a .aStats .wrap{grid-template-columns:repeat(2,1fr)}#cpt-a .aGrid{grid-template-columns:1fr}#cpt-a .aGalGrid{grid-template-columns:repeat(2,1fr)}#cpt-a .aGalGrid a:first-child{grid-column:span 2}#cpt-a .aGalGrid a:first-child img,#cpt-a .aGalGrid img{height:200px}}
 
   /* ===================================================================
-     CONCEPT B — "EDITORIAL SPLIT"  (refined magazine, alternating image/text)
+     CONCEPT B — "EDITORIAL SPLIT" (full-bleed hero + alternating splits)
+     — same brand palette/fonts, different STRUCTURE
      =================================================================== */
-  #cpt-b{--g:#1d3b2a;--gd:#122619;--olive:#7f9b5b;--sand:#efe7d6;--sand2:#e5dac2;--ink:#24291f;
-    background:var(--sand);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
-  #cpt-b .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
-  #cpt-b .sans{font-family:"Helvetica Neue",Arial,sans-serif}
-  #cpt-b .k{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:11.5px;color:var(--olive)}
-  #cpt-b .btn{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:14px;letter-spacing:.03em;padding:15px 32px;cursor:pointer;border:0}
-  #cpt-b .btn-dk{background:var(--g);color:var(--sand)}
-  #cpt-b .btn-ol{background:var(--olive);color:#fff}
-  #cpt-b .btn-out{border:1.5px solid var(--g);color:var(--g);background:transparent}
-  /* hero — full-bleed image w/ overlaid plate */
-  #cpt-b .bHero{position:relative;min-height:620px;display:flex;align-items:center;
-    background:linear-gradient(90deg,rgba(13,28,18,.86) 0%,rgba(13,28,18,.5) 45%,rgba(13,28,18,.15) 100%),url('https://images.pexels.com/photos/3958954/pexels-photo-3958954.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600') center/cover}
+  #cpt-b .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  #cpt-b .k{font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--clay)}
+  #cpt-b .bHero{position:relative;min-height:600px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(9,28,16,.9) 0%,rgba(9,28,16,.55) 45%,rgba(9,28,16,.2) 100%),url('https://images.pexels.com/photos/3958954/pexels-photo-3958954.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600') center/cover}
   #cpt-b .bHero .wrap{width:100%}
-  #cpt-b .bHero .plate{max-width:600px;color:#fff;padding:60px 0}
-  #cpt-b .bHero .k{color:#cde0a8}
-  #cpt-b .bHero h1{font-size:clamp(40px,5.2vw,68px);line-height:1.05;margin:18px 0 20px;font-weight:400}
-  #cpt-b .bHero h1 em{font-style:italic;color:#d9e8bb}
-  #cpt-b .bHero p{font-size:19px;line-height:1.7;max-width:48ch;margin-bottom:28px;color:rgba(255,255,255,.9)}
+  #cpt-b .bHero .plate{max-width:620px;color:var(--cream);padding:60px 0}
+  #cpt-b .bHero .k{color:var(--gold)}
+  #cpt-b .bHero h1{font-family:"Arial Black",sans-serif;font-size:clamp(42px,5.6vw,76px);line-height:1;margin:16px 0 20px;letter-spacing:-.02em}
+  #cpt-b .bHero h1 .g{color:var(--gold)}
+  #cpt-b .bHero p{font-size:19px;line-height:1.65;max-width:50ch;margin-bottom:28px;color:rgba(246,239,223,.9)}
   #cpt-b .bHero .acts{display:flex;gap:14px;flex-wrap:wrap}
-  /* trust ribbon */
-  #cpt-b .bTrust{background:var(--g);color:var(--sand)}
-  #cpt-b .bTrust .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:20px 32px}
-  #cpt-b .bTrust div{font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px}
-  #cpt-b .bTrust div b{color:#cde0a8;font-size:20px}
-  /* intro statement */
-  #cpt-b .bIntro{padding:84px 0;text-align:center}
-  #cpt-b .bIntro p{font-size:clamp(23px,2.8vw,33px);line-height:1.5;max-width:20ch;margin:14px auto 0;max-width:760px;color:#2c3322}
-  #cpt-b .bIntro p b{color:var(--g)}
-  /* alternating splits */
-  #cpt-b .bSplit{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
-  #cpt-b .bSplit .img{min-height:460px;background-size:cover;background-position:center}
-  #cpt-b .bSplit .txt{padding:70px 7%}
-  #cpt-b .bSplit.alt{background:var(--sand2)}
-  #cpt-b .bSplit.alt .bNum{color:var(--olive)}
-  #cpt-b .bNum{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:15px;color:var(--olive);letter-spacing:.1em}
-  #cpt-b .bSplit h2{font-size:clamp(28px,3.4vw,40px);font-weight:400;color:var(--g);margin:10px 0 16px;line-height:1.15}
-  #cpt-b .bSplit p{font-size:17px;line-height:1.8;color:#3a4030;margin-bottom:14px;max-width:52ch}
+  #cpt-b .bTrust{background:var(--forest)}
+  #cpt-b .bTrust .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:20px 28px}
+  #cpt-b .bTrust div{font-weight:700;font-size:14px;color:var(--cream);display:flex;align-items:center;gap:10px}
+  #cpt-b .bTrust b{color:var(--gold);font-size:18px}
+  #cpt-b .bIntro{padding:76px 0;text-align:center}
+  #cpt-b .bIntro p{font-family:"Arial Black",sans-serif;font-size:clamp(24px,3vw,38px);line-height:1.25;max-width:20ch;margin:14px auto 0;max-width:900px;color:var(--forest);text-transform:uppercase;letter-spacing:-.01em}
+  #cpt-b .bIntro p b{color:var(--clay)}
+  #cpt-b .bSplit{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+  #cpt-b .bSplit .img{min-height:480px;background-size:cover;background-position:center}
+  #cpt-b .bSplit .txt{padding:72px 7%;display:flex;flex-direction:column;justify-content:center}
+  #cpt-b .bSplit.alt{background:var(--paper)}
+  #cpt-b .bNum{font-weight:900;font-size:14px;color:var(--clay);letter-spacing:.1em;text-transform:uppercase}
+  #cpt-b .bSplit h2{font-family:"Arial Black",sans-serif;font-size:clamp(28px,3.4vw,42px);color:var(--forest);margin:10px 0 16px;line-height:1.05;text-transform:uppercase;letter-spacing:-.01em}
+  #cpt-b .bSplit p{font-size:17px;line-height:1.75;color:#3a4030;margin-bottom:14px;max-width:52ch}
   #cpt-b .bSplit ul{list-style:none;display:grid;gap:10px;margin-top:6px}
-  #cpt-b .bSplit li{font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;color:#3a4030;padding-left:26px;position:relative}
-  #cpt-b .bSplit li::before{content:"✦";position:absolute;left:0;color:var(--olive)}
-  /* gallery strip */
-  #cpt-b .bGal{padding:84px 0 20px;text-align:center}
+  #cpt-b .bSplit li{font-size:15px;font-weight:700;color:#2f3a24;padding-left:28px;position:relative}
+  #cpt-b .bSplit li::before{content:"\2713";position:absolute;left:0;color:var(--clay);font-weight:900}
+  #cpt-b .bGal{padding:80px 0 18px;text-align:center}
   #cpt-b .bGal .k{display:block;margin-bottom:10px}
-  #cpt-b .bGal h2{font-size:clamp(28px,3.4vw,42px);font-weight:400;color:var(--g);margin-bottom:34px}
-  #cpt-b .bGalRow{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-  #cpt-b .bGalRow img{height:260px;width:100%;object-fit:cover;filter:saturate(.95)}
-  /* testimonial */
-  #cpt-b .bQuote{padding:90px 0;text-align:center}
-  #cpt-b .bQuote .mark{font-size:70px;color:var(--olive);line-height:.4;font-family:Georgia,serif}
-  #cpt-b .bQuote blockquote{font-size:clamp(24px,3vw,34px);line-height:1.5;max-width:900px;margin:0 auto 22px;color:var(--g);font-style:italic}
-  #cpt-b .bQuote cite{font-family:"Helvetica Neue",Arial,sans-serif;font-style:normal;font-weight:700;font-size:14px;letter-spacing:.04em;color:#54604040;color:#54604a}
-  /* cta */
-  #cpt-b .bCta{background:var(--g);color:var(--sand);text-align:center;padding:84px 32px}
-  #cpt-b .bCta h2{font-size:clamp(32px,4.4vw,52px);font-weight:400;margin-bottom:16px}
-  #cpt-b .bCta p{font-family:"Helvetica Neue",Arial,sans-serif;font-size:17px;color:rgba(239,231,214,.8);max-width:46ch;margin:0 auto 28px;line-height:1.6}
-  #cpt-b .bFoot{background:var(--gd);color:rgba(239,231,214,.6);text-align:center;padding:24px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px}
-  @media(max-width:860px){
-    #cpt-b .bSplit{grid-template-columns:1fr}
-    #cpt-b .bSplit .img{min-height:300px;order:-1}
-    #cpt-b .bGalRow{grid-template-columns:repeat(2,1fr)}
-    #cpt-b .bGalRow img{height:200px}
-  }
+  #cpt-b .bGal h2{font-family:"Arial Black",sans-serif;font-size:clamp(28px,3.4vw,42px);color:var(--forest);margin-bottom:32px;text-transform:uppercase}
+  #cpt-b .bGalRow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  #cpt-b .bGalRow img{height:260px;width:100%;object-fit:cover}
+  #cpt-b .bQuote{padding:86px 0;text-align:center;background:var(--paper)}
+  #cpt-b .bQuote .mark{font-size:80px;color:var(--gold);line-height:.5;font-family:Georgia,serif}
+  #cpt-b .bQuote blockquote{font-family:"Arial Black",sans-serif;font-size:clamp(22px,2.8vw,34px);line-height:1.3;max-width:900px;margin:10px auto 22px;color:var(--forest);text-transform:uppercase;letter-spacing:-.01em}
+  #cpt-b .bQuote cite{font-style:normal;font-weight:800;font-size:14px;letter-spacing:.04em;color:var(--clay)}
+  #cpt-b .bCta{background:linear-gradient(135deg,var(--clay),var(--forest-dk));color:var(--cream);text-align:center;padding:84px 28px}
+  #cpt-b .bCta h2{font-family:"Arial Black",sans-serif;font-size:clamp(32px,4.4vw,54px);margin-bottom:16px}
+  #cpt-b .bCta p{font-size:17px;color:rgba(246,239,223,.85);max-width:48ch;margin:0 auto 28px;line-height:1.6}
+  @media(max-width:860px){#cpt-b .bSplit{grid-template-columns:1fr}#cpt-b .bSplit .img{min-height:300px;order:-1}#cpt-b .bGalRow{grid-template-columns:repeat(2,1fr)}#cpt-b .bGalRow img{height:200px}}
 
   /* ===================================================================
-     CONCEPT C — "MODERN GRID"  (clean, airy, card-based, emerald)
+     CONCEPT C — "CARD GRID" (benefit cards + step tracker + split feature)
+     — same brand palette/fonts, different STRUCTURE
      =================================================================== */
-  #cpt-c{--em:#157347;--em2:#0f5c38;--mint:#e8f5ee;--mint2:#d6ecdf;--ink:#16241d;--slate:#55675d;
-    background:#fff;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-  #cpt-c .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-  #cpt-c .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:12px;cursor:pointer;border:0}
-  #cpt-c .btn-em{background:var(--em);color:#fff;box-shadow:0 12px 24px -10px rgba(21,115,71,.6)}
-  #cpt-c .btn-soft{background:var(--mint);color:var(--em2)}
-  #cpt-c .pill{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--em2);font-weight:700;font-size:13px;padding:7px 15px;border-radius:999px}
-  /* hero — text + framed image + floating stat card */
-  #cpt-c .cHero{background:linear-gradient(180deg,var(--mint) 0%,#fff 100%);padding:60px 0 70px}
+  #cpt-c{background:#fbf8ef}
+  #cpt-c .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  #cpt-c .pill{display:inline-flex;align-items:center;gap:8px;background:var(--paper);color:var(--forest);font-weight:800;font-size:13px;padding:7px 15px;border-radius:999px;border:1px solid #e3d8bc}
+  #cpt-c .cHero{background:linear-gradient(180deg,var(--paper) 0%,#fbf8ef 100%);padding:60px 0 70px}
   #cpt-c .cHero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:50px;align-items:center}
-  #cpt-c .cHero h1{font-size:clamp(38px,4.8vw,60px);line-height:1.08;letter-spacing:-.02em;margin:18px 0 18px;font-weight:800}
-  #cpt-c .cHero h1 span{color:var(--em)}
-  #cpt-c .cHero p{font-size:18px;line-height:1.65;color:var(--slate);max-width:44ch;margin-bottom:26px}
+  #cpt-c .cHero h1{font-family:"Arial Black",sans-serif;font-size:clamp(38px,4.8vw,62px);line-height:1.02;letter-spacing:-.02em;margin:18px 0;text-transform:uppercase}
+  #cpt-c .cHero h1 span{color:var(--clay)}
+  #cpt-c .cHero p{font-size:18px;line-height:1.65;color:#4c5340;max-width:44ch;margin-bottom:26px}
   #cpt-c .cHero .acts{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  #cpt-c .cHero .mini{display:flex;gap:22px;margin-top:28px;flex-wrap:wrap}
-  #cpt-c .cHero .mini b{display:block;font-size:26px;color:var(--em);font-weight:800}
-  #cpt-c .cHero .mini span{font-size:13px;color:var(--slate)}
+  #cpt-c .btnSoft{display:inline-flex;align-items:center;gap:8px;font-weight:900;font-size:15px;padding:15px 26px;border-radius:999px;cursor:pointer;border:0;background:var(--forest);color:var(--cream)}
+  #cpt-c .cHero .mini{display:flex;gap:26px;margin-top:28px;flex-wrap:wrap}
+  #cpt-c .cHero .mini b{display:block;font-family:"Arial Black",sans-serif;font-size:28px;color:var(--forest)}
+  #cpt-c .cHero .mini span{font-size:13px;color:var(--muted)}
   #cpt-c .cHeroMedia{position:relative}
-  #cpt-c .cHeroMedia>img{border-radius:22px;height:460px;width:100%;object-fit:cover;box-shadow:0 30px 60px -24px rgba(21,41,29,.4)}
-  #cpt-c .cFloat{position:absolute;right:-14px;bottom:28px;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:0 24px 50px -18px rgba(21,41,29,.35);display:flex;align-items:center;gap:12px}
-  #cpt-c .cFloat .dot{width:44px;height:44px;border-radius:12px;background:var(--mint);color:var(--em);display:flex;align-items:center;justify-content:center;font-size:22px}
-  #cpt-c .cFloat b{font-size:15px}
-  #cpt-c .cFloat span{font-size:12.5px;color:var(--slate)}
-  /* logos / trust bar */
-  #cpt-c .cTrust{border-top:1px solid #eef2ef;border-bottom:1px solid #eef2ef}
-  #cpt-c .cTrust .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px;padding:22px 28px}
-  #cpt-c .cTrust .pill{background:#fff;border:1px solid #e4ece7;color:var(--em2)}
-  /* section head */
-  #cpt-c .cHead{text-align:center;max-width:620px;margin:0 auto 44px}
-  #cpt-c .cHead h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.02em;margin:12px 0 10px}
-  #cpt-c .cHead p{color:var(--slate);font-size:16.5px;line-height:1.6}
-  /* benefits grid */
-  #cpt-c .cBenefits{padding:84px 0}
+  #cpt-c .cHeroMedia>img{border-radius:22px;height:460px;width:100%;object-fit:cover;box-shadow:0 30px 60px -24px rgba(12,40,23,.45)}
+  #cpt-c .cFloat{position:absolute;right:-14px;bottom:28px;background:var(--forest);color:var(--cream);border-radius:16px;padding:16px 20px;box-shadow:0 24px 50px -18px rgba(12,40,23,.5);display:flex;align-items:center;gap:12px}
+  #cpt-c .cFloat .dot{width:44px;height:44px;border-radius:12px;background:var(--gold);color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:22px}
+  #cpt-c .cFloat b{font-size:15px}#cpt-c .cFloat span{font-size:12.5px;color:rgba(246,239,223,.75)}
+  #cpt-c .cTrust{background:var(--forest)}
+  #cpt-c .cTrust .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 20px;padding:20px 28px}
+  #cpt-c .cTrust .pill{background:#15311f;border:1px solid rgba(232,178,58,.25);color:var(--cream)}
+  #cpt-c .cHead{text-align:center;max-width:640px;margin:0 auto 42px}
+  #cpt-c .cHead h2{font-family:"Arial Black",sans-serif;font-size:clamp(28px,3.6vw,44px);margin:12px 0 10px;color:var(--forest);text-transform:uppercase;letter-spacing:-.01em}
+  #cpt-c .cHead p{color:var(--muted);font-size:16.5px;line-height:1.6}
+  #cpt-c .cBenefits{padding:82px 0}
   #cpt-c .cBgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  #cpt-c .cBcard{background:#fff;border:1px solid #e9efea;border-radius:18px;padding:30px 26px;transition:.2s}
-  #cpt-c .cBcard:hover{box-shadow:0 24px 50px -26px rgba(21,41,29,.3);transform:translateY(-3px)}
-  #cpt-c .cBcard .ic{width:52px;height:52px;border-radius:14px;background:var(--mint);color:var(--em);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:16px}
-  #cpt-c .cBcard h3{font-size:18.5px;font-weight:700;margin-bottom:8px}
-  #cpt-c .cBcard p{color:var(--slate);line-height:1.6;font-size:15px}
-  /* steps tracker */
-  #cpt-c .cSteps{background:var(--mint);padding:84px 0}
+  #cpt-c .cBcard{background:#fff;border:1px solid #ece2c8;border-radius:18px;padding:30px 26px;transition:.2s}
+  #cpt-c .cBcard:hover{box-shadow:0 24px 50px -26px rgba(12,40,23,.3);transform:translateY(-3px)}
+  #cpt-c .cBcard .ic{width:52px;height:52px;border-radius:14px;background:var(--paper);color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:16px}
+  #cpt-c .cBcard h3{font-family:"Arial Black",sans-serif;font-size:18px;margin-bottom:8px;color:var(--forest)}
+  #cpt-c .cBcard p{color:#55604a;line-height:1.6;font-size:15px}
+  #cpt-c .cSteps{background:var(--forest);padding:82px 0}
+  #cpt-c .cSteps .cHead h2{color:var(--cream)}#cpt-c .cSteps .cHead p{color:rgba(246,239,223,.72)}
   #cpt-c .cStepGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:cs}
-  #cpt-c .cStepCard{background:#fff;border-radius:18px;padding:28px 22px;position:relative}
-  #cpt-c .cStepCard .no{counter-increment:cs;width:40px;height:40px;border-radius:50%;background:var(--em);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  #cpt-c .cStepCard{background:rgba(246,239,223,.06);border:1px solid rgba(232,178,58,.22);border-radius:18px;padding:26px 22px}
+  #cpt-c .cStepCard .no{counter-increment:cs;width:42px;height:42px;border-radius:12px;background:var(--gold);color:var(--forest);font-family:"Arial Black",sans-serif;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
   #cpt-c .cStepCard .no::before{content:counter(cs,decimal-leading-zero)}
-  #cpt-c .cStepCard h3{font-size:17px;font-weight:700;margin-bottom:7px}
-  #cpt-c .cStepCard p{color:var(--slate);font-size:14px;line-height:1.55}
-  /* split feature */
-  #cpt-c .cFeat{padding:88px 0}
+  #cpt-c .cStepCard h3{font-family:"Arial Black",sans-serif;font-size:17px;margin-bottom:7px;color:var(--cream)}
+  #cpt-c .cStepCard p{color:rgba(246,239,223,.72);font-size:14px;line-height:1.55}
+  #cpt-c .cFeat{padding:86px 0}
   #cpt-c .cFeat .wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
-  #cpt-c .cFeat img{border-radius:20px;height:420px;width:100%;object-fit:cover;box-shadow:0 26px 54px -26px rgba(21,41,29,.35)}
-  #cpt-c .cFeat h2{font-size:clamp(28px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;margin:12px 0 16px}
+  #cpt-c .cFeat img{border-radius:20px;height:420px;width:100%;object-fit:cover;box-shadow:0 26px 54px -26px rgba(12,40,23,.4)}
+  #cpt-c .cFeat h2{font-family:"Arial Black",sans-serif;font-size:clamp(28px,3.4vw,42px);margin:12px 0 16px;color:var(--forest);text-transform:uppercase;letter-spacing:-.01em}
   #cpt-c .cFeat .chk{list-style:none;display:grid;gap:14px;margin-top:8px}
-  #cpt-c .cFeat .chk li{padding-left:36px;position:relative;color:#374a40;line-height:1.5}
-  #cpt-c .cFeat .chk li::before{content:"✓";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:7px;background:var(--mint);color:var(--em);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
-  /* cta card */
+  #cpt-c .cFeat .chk li{padding-left:38px;position:relative;color:#374a40;line-height:1.5;font-weight:600}
+  #cpt-c .cFeat .chk li::before{content:"\2713";position:absolute;left:0;top:-1px;width:26px;height:26px;border-radius:8px;background:var(--paper);color:var(--forest);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
   #cpt-c .cCta{padding:20px 0 90px}
-  #cpt-c .cCtaCard{background:linear-gradient(135deg,var(--em),var(--em2));border-radius:28px;padding:66px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
-  #cpt-c .cCtaCard::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.08);right:-90px;top:-120px}
-  #cpt-c .cCtaCard h2{font-size:clamp(30px,4vw,48px);font-weight:800;margin-bottom:14px;position:relative}
-  #cpt-c .cCtaCard p{color:rgba(255,255,255,.85);font-size:17px;max-width:46ch;margin:0 auto 26px;position:relative;line-height:1.6}
-  #cpt-c .cCtaCard .btn-wht{background:#fff;color:var(--em2);position:relative}
-  #cpt-c .cFoot{background:#0f1c16;color:rgba(255,255,255,.6);text-align:center;padding:24px;font-size:13px}
-  #cpt-c .cFoot b{color:#7fe0ad}
-  @media(max-width:900px){
-    #cpt-c .cHero .wrap,#cpt-c .cFeat .wrap{grid-template-columns:1fr;gap:36px}
-    #cpt-c .cBgrid{grid-template-columns:1fr}
-    #cpt-c .cStepGrid{grid-template-columns:repeat(2,1fr)}
-  }
+  #cpt-c .cCtaCard{background:linear-gradient(135deg,var(--forest),var(--forest-dk));border-radius:28px;padding:64px 40px;text-align:center;color:var(--cream);position:relative;overflow:hidden}
+  #cpt-c .cCtaCard::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(232,178,58,.1);right:-90px;top:-120px}
+  #cpt-c .cCtaCard h2{font-family:"Arial Black",sans-serif;font-size:clamp(30px,4vw,48px);margin-bottom:14px;position:relative;text-transform:uppercase}
+  #cpt-c .cCtaCard p{color:rgba(246,239,223,.85);font-size:17px;max-width:46ch;margin:0 auto 26px;position:relative;line-height:1.6}
+  @media(max-width:900px){#cpt-c .cHero .wrap,#cpt-c .cFeat .wrap{grid-template-columns:1fr;gap:36px}#cpt-c .cBgrid{grid-template-columns:1fr}#cpt-c .cStepGrid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -252,43 +247,49 @@
   <div class="tabs">
     <button class="on" data-c="cpt-a"><span class="n">01</span>Bold Process</button>
     <button data-c="cpt-b"><span class="n">02</span>Editorial Split</button>
-    <button data-c="cpt-c"><span class="n">03</span>Modern Grid</button>
+    <button data-c="cpt-c"><span class="n">03</span>Card Grid</button>
   </div>
 </div>
-<div class="note">Sample content &amp; stock imagery for layout direction only — pick a lane and I'll build it out with the real sod copy.</div>
+<div class="note">Same brand as the homepage — real nav &amp; footer, forest/gold palette, Arial Black type. The 3 differ only in layout. Sample content &amp; stock imagery.</div>
 
+<!-- ===== SHARED BRAND NAV ===== -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#"><img src="img/whitelogo.png" alt="TurnKey Sod logo"></a>
+    <nav class="links">
+      <a href="#">Home</a>
+      <span class="has-drop"><a href="#">Services <span class="car">&#9662;</span></a><span class="drop"><a href="#">Sod Installation</a><a href="#">Sod Replacement</a><a href="#">Sod Delivery</a></span></span>
+      <span class="has-drop"><a href="#">Grass Types <span class="car">&#9662;</span></a><span class="drop"><a href="#">St. Augustine Grass</a><a href="#">Bermuda Grass</a><a href="#">Zoysia Grass</a><a href="#">Centipede Grass</a><a href="#">All Grass Types</a></span></span>
+      <a href="#">Why Us</a><a href="#">Reviews</a><a href="#">Service Area</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="nav-phone" href="#"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.8z"/></svg>(504) 569-5437</a>
+      <button class="nav-cta">Free Estimate</button>
+    </div>
+  </div>
+</header>
+
+<main>
 <!-- ============ CONCEPT A ============ -->
 <div class="concept show" id="cpt-a">
-  <section class="aHero">
-    <div class="wrap">
-      <div class="aText">
-        <div class="aKick">New Orleans Sod Installation</div>
-        <h1 class="hd">FRESH SOD.<br><span class="out">INSTALLED</span> RIGHT.</h1>
-        <p>From bare, graded dirt to a finished, deep-green lawn in a single day — laid tight, rolled firm, and watered in by a local crew that does it right the first time.</p>
-        <div class="aCtas">
-          <button class="btn btn-gold">Get a Free Estimate</button>
-          <a class="phone">📞 <span>(504) 569-5437</span></a>
-        </div>
-      </div>
-      <div class="aMedia">
-        <div class="ph"><img src="https://images.pexels.com/photos/5231241/pexels-photo-5231241.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Worker unrolling fresh sod onto prepared soil"></div>
-        <div class="aSeal"><b>1&nbsp;Day</b><span>Install</span></div>
-      </div>
+  <section class="aHero"><div class="wrap">
+    <div class="aText">
+      <div class="aKick">New Orleans Sod Installation</div>
+      <h1 class="hd">FRESH SOD.<br><span class="out">INSTALLED</span> RIGHT.</h1>
+      <p>From bare, graded dirt to a finished, deep-green lawn in a single day — laid tight, rolled firm, and watered in by a local crew that does it right the first time.</p>
+      <div class="aCtas"><button class="btnG">Get a Free Estimate</button><a class="phone">📞 <span>(504) 569-5437</span></a></div>
     </div>
-  </section>
-
-  <section class="aStats"><div class="wrap">
-    <div class="st"><b>13</b><span>Cities Served</span></div>
-    <div class="st"><b>4</b><span>Grass Varieties</span></div>
-    <div class="st"><b>1 Day</b><span>Typical Install</span></div>
-    <div class="st"><b>Local</b><span>NOLA Crew</span></div>
+    <div class="aMedia">
+      <div class="ph"><img src="https://images.pexels.com/photos/5231241/pexels-photo-5231241.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Worker unrolling fresh sod onto prepared soil"></div>
+      <div class="aSeal"><b>1&nbsp;Day</b><span>Install</span></div>
+    </div>
   </div></section>
-
+  <section class="aStats"><div class="wrap">
+    <div class="st"><b>13</b><span>Cities Served</span></div><div class="st"><b>4</b><span>Grass Varieties</span></div>
+    <div class="st"><b>1 Day</b><span>Typical Install</span></div><div class="st"><b>Local</b><span>NOLA Crew</span></div>
+  </div></section>
   <section class="aProc"><div class="wrap">
-    <div class="lead">
-      <div class="k">How It Works</div>
-      <h2 class="hd">Your install day, step by step</h2>
-    </div>
+    <div class="lead"><div class="k">How It Works</div><h2 class="hd">Your install day, step by step</h2></div>
     <div class="aSteps">
       <div class="aStep"><div class="num">01</div><div><h3>Free On-Site Measure</h3><p>We walk your yard, confirm square footage, recommend the right grass for your sun and soil, and hand you a written best-price estimate.</p></div></div>
       <div class="aStep"><div class="num">02</div><div><h3>Ground Prep &amp; Grading</h3><p>The site is cleared, loosened, graded, and raked smooth so every roll makes firm contact and water drains the way it should.</p></div></div>
@@ -296,7 +297,6 @@
       <div class="aStep"><div class="num">04</div><div><h3>Rolled &amp; Watered In</h3><p>The whole lawn is rolled to press roots into the soil, then given a deep first soak that kicks off rooting the same afternoon.</p></div></div>
     </div>
   </div></section>
-
   <section class="aWhy"><div class="wrap">
     <h2 class="hd">Why homeowners call TurnKey</h2>
     <p class="sub">A finished lawn is the easy part. Doing it so it roots fast and lasts is the whole job.</p>
@@ -306,7 +306,6 @@
       <div class="aCard"><div class="ic">💧</div><h3>Rooting Game-Plan</h3><p>You leave with a simple first-month watering and mowing schedule so the lawn takes hold.</p></div>
     </div>
   </div></section>
-
   <section class="aGal"><div class="wrap">
     <h2 class="hd">Recent New Orleans lawns</h2>
     <div class="aGalGrid">
@@ -317,90 +316,54 @@
       <a><img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Healthy manicured green lawn"></a>
     </div>
   </div></section>
-
-  <section class="aCta">
-    <h2 class="hd">Ready for a lush new lawn?</h2>
-    <p>Get a free on-site estimate from New Orleans' trusted sod crew — best price, guaranteed.</p>
-    <button class="btn btn-gold">Get a Free Estimate</button>
-  </section>
-  <div class="aFoot">© 2026 <b>TurnKey Sod</b> · Natural sod installation, replacement &amp; delivery · Greater New Orleans</div>
+  <section class="aCta"><h2 class="hd">Ready for a lush new lawn?</h2><p>Get a free on-site estimate from New Orleans' trusted sod crew — best price, guaranteed.</p><button class="btnG">Get a Free Estimate</button></section>
 </div>
 
 <!-- ============ CONCEPT B ============ -->
 <div class="concept" id="cpt-b">
   <section class="bHero"><div class="wrap"><div class="plate">
     <span class="k">Sod Installation · New Orleans</span>
-    <h1>A greener lawn,<br><em>professionally laid.</em></h1>
+    <h1 class="hd">A GREENER LAWN,<br><span class="g">PROFESSIONALLY LAID.</span></h1>
     <p>We prep, lay, and root fresh-grown sod so your yard goes from tired dirt to a lawn that looks like it has always been there.</p>
-    <div class="acts">
-      <button class="btn btn-ol">Request an Estimate</button>
-      <button class="btn btn-out" style="border-color:rgba(255,255,255,.6);color:#fff">Call (504) 569-5437</button>
-    </div>
+    <div class="acts"><button class="btnG">Request an Estimate</button><button class="btnO">Call (504) 569-5437</button></div>
   </div></div></section>
-
   <div class="bTrust"><div class="wrap">
-    <div><b>✓</b> Licensed &amp; Insured</div>
-    <div><b>✓</b> Best-Price Guarantee</div>
-    <div><b>✓</b> Locally Grown Sod</div>
-    <div><b>✓</b> Free On-Site Estimates</div>
+    <div><b>✓</b> Licensed &amp; Insured</div><div><b>✓</b> Best-Price Guarantee</div>
+    <div><b>✓</b> Locally Grown Sod</div><div><b>✓</b> Free On-Site Estimates</div>
   </div></div>
-
   <section class="bIntro"><div class="wrap">
     <span class="k">The TurnKey Difference</span>
-    <p>Good sod is the easy part. Grading, tight seams, and a proper first soak are what make a lawn <b>root fast and stay green</b> through a Gulf-Coast summer.</p>
+    <p>Good sod is the easy part. Grading, tight seams, and a proper first soak are what make a lawn <b>root fast and stay green.</b></p>
   </div></section>
-
   <section class="bSplit">
     <div class="img" style="background-image:url('https://images.pexels.com/photos/9029162/pexels-photo-9029162.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200')"></div>
-    <div class="txt">
-      <span class="bNum">01 — Prep</span>
-      <h2>We get the ground right first</h2>
+    <div class="txt"><span class="bNum">01 — Prep</span><h2>We get the ground right first</h2>
       <p>Before a single roll goes down, the site is cleared, loosened, graded, and raked smooth. On our heavy clay soils, drainage and grade matter as much as the grass itself.</p>
-      <ul><li>Debris &amp; old turf cleared</li><li>Soil loosened and leveled</li><li>Drainage checked for flat NOLA lots</li></ul>
-    </div>
+      <ul><li>Debris &amp; old turf cleared</li><li>Soil loosened and leveled</li><li>Drainage checked for flat NOLA lots</li></ul></div>
   </section>
   <section class="bSplit alt">
-    <div class="txt">
-      <span class="bNum">02 — Lay</span>
-      <h2>Fresh sod, tight seams, rolled firm</h2>
+    <div class="txt"><span class="bNum">02 — Lay</span><h2>Fresh sod, tight seams, rolled firm</h2>
       <p>Pallets are cut close to delivery day and staged in shade. Pieces are laid along a straight edge with staggered, tightly butted seams, then the whole lawn is rolled into firm contact.</p>
-      <ul><li>Cut fresh, never left to dry</li><li>Staggered, seamless joints</li><li>Rolled for root-to-soil contact</li></ul>
-    </div>
+      <ul><li>Cut fresh, never left to dry</li><li>Staggered, seamless joints</li><li>Rolled for root-to-soil contact</li></ul></div>
     <div class="img" style="background-image:url('https://images.pexels.com/photos/5231236/pexels-photo-5231236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200')"></div>
   </section>
   <section class="bSplit">
     <div class="img" style="background-image:url('https://images.pexels.com/photos/11654274/pexels-photo-11654274.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200')"></div>
-    <div class="txt">
-      <span class="bNum">03 — Root</span>
-      <h2>A lawn that takes hold</h2>
+    <div class="txt"><span class="bNum">03 — Root</span><h2>A lawn that takes hold</h2>
       <p>We water in deeply the same day and send you off with a simple first-month schedule. New sod roots in about two to three weeks and is ready for its first mow soon after.</p>
-      <ul><li>Deep first-day soak</li><li>First-month care plan</li><li>Best-price guarantee</li></ul>
-    </div>
+      <ul><li>Deep first-day soak</li><li>First-month care plan</li><li>Best-price guarantee</li></ul></div>
   </section>
-
-  <section class="bGal"><div class="wrap">
-    <span class="k">Our Work</span>
-    <h2>Fresh lawns across Greater New Orleans</h2>
-  </div>
-  <div class="bGalRow">
-    <img src="https://images.pexels.com/photos/6573261/pexels-photo-6573261.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Laying a strip of fresh sod by hand">
-    <img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Neatly manicured green lawn">
-    <img src="https://images.pexels.com/photos/17261493/pexels-photo-17261493.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Yard mid-installation with fresh sod">
-    <img src="https://images.pexels.com/photos/3958954/pexels-photo-3958954.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Home with a healthy front lawn">
-  </div></section>
-
-  <section class="bQuote"><div class="wrap">
-    <div class="mark">&ldquo;</div>
+  <section class="bGal"><div class="wrap"><span class="k">Our Work</span><h2>Fresh lawns across Greater New Orleans</h2></div>
+    <div class="bGalRow">
+      <img src="https://images.pexels.com/photos/6573261/pexels-photo-6573261.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Laying a strip of fresh sod by hand">
+      <img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Neatly manicured green lawn">
+      <img src="https://images.pexels.com/photos/17261493/pexels-photo-17261493.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Yard mid-installation with fresh sod">
+      <img src="https://images.pexels.com/photos/3958954/pexels-photo-3958954.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Home with a healthy front lawn">
+    </div></section>
+  <section class="bQuote"><div class="wrap"><div class="mark">&ldquo;</div>
     <blockquote>They graded the yard, laid the sod in an afternoon, and walked us through watering. Two weeks later it had rooted in and looked incredible.</blockquote>
-    <cite>— Homeowner, Metairie</cite>
-  </div></section>
-
-  <section class="bCta">
-    <h2>Let's lay your new lawn</h2>
-    <p>Tell us about your yard and we'll schedule a free on-site measure — no pressure, just the best price in town.</p>
-    <button class="btn btn-ol">Request a Free Estimate</button>
-  </section>
-  <div class="bFoot">© 2026 TurnKey Sod · Sod installation, replacement &amp; delivery · Greater New Orleans</div>
+    <cite>— Homeowner, Metairie</cite></div></section>
+  <section class="bCta"><h2 class="hd">Let's lay your new lawn</h2><p>Tell us about your yard and we'll schedule a free on-site measure — no pressure, just the best price in town.</p><button class="btnG">Request a Free Estimate</button></section>
 </div>
 
 <!-- ============ CONCEPT C ============ -->
@@ -408,37 +371,22 @@
   <section class="cHero"><div class="wrap">
     <div class="cHtext">
       <span class="pill">🌿 New Orleans Sod Experts</span>
-      <h1>Professional <span>sod installation</span>, done in a day.</h1>
+      <h1 class="hd">Professional <span>sod installation</span>, done in a day.</h1>
       <p>A local crew preps, lays, and roots fresh-grown sod so you skip the retail middleman — and the guesswork — and get a lawn that lasts.</p>
-      <div class="acts">
-        <button class="btn btn-em">Get a Free Estimate</button>
-        <button class="btn btn-soft">📞 (504) 569-5437</button>
-      </div>
-      <div class="mini">
-        <div><b>13</b><span>Cities served</span></div>
-        <div><b>4</b><span>Grass types</span></div>
-        <div><b>1 day</b><span>Typical install</span></div>
-      </div>
+      <div class="acts"><button class="btnG">Get a Free Estimate</button><button class="btnSoft">📞 (504) 569-5437</button></div>
+      <div class="mini"><div><b>13</b><span>Cities served</span></div><div><b>4</b><span>Grass types</span></div><div><b>1 day</b><span>Typical install</span></div></div>
     </div>
     <div class="cHeroMedia">
       <img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200" alt="Healthy green lawn in front of a home">
       <div class="cFloat"><div class="dot">✓</div><div><b>Best-Price Guarantee</b><br><span>In writing, every job</span></div></div>
     </div>
   </div></section>
-
   <div class="cTrust"><div class="wrap">
-    <span class="pill">Licensed &amp; Insured</span>
-    <span class="pill">Locally Grown Sod</span>
-    <span class="pill">Free On-Site Estimates</span>
-    <span class="pill">St. Augustine · Bermuda · Zoysia · Centipede</span>
+    <span class="pill">Licensed &amp; Insured</span><span class="pill">Locally Grown Sod</span>
+    <span class="pill">Free On-Site Estimates</span><span class="pill">St. Augustine · Bermuda · Zoysia · Centipede</span>
   </div></div>
-
   <section class="cBenefits"><div class="wrap">
-    <div class="cHead">
-      <span class="pill">Why TurnKey</span>
-      <h2>Everything handled, end to end</h2>
-      <p>One crew from the first measure to the first mow — no coordinating suppliers, no sod drying out in a parking lot.</p>
-    </div>
+    <div class="cHead"><span class="pill">Why TurnKey</span><h2>Everything handled, end to end</h2><p>One crew from the first measure to the first mow — no coordinating suppliers, no sod drying out in a parking lot.</p></div>
     <div class="cBgrid">
       <div class="cBcard"><div class="ic">🌱</div><h3>Fresh, Local Sod</h3><p>Cut close to your install date and timed to the weather so it roots fast and holds its color.</p></div>
       <div class="cBcard"><div class="ic">📐</div><h3>Proper Prep</h3><p>Grading and drainage dialed in for flat, clay-heavy New Orleans yards before the first roll.</p></div>
@@ -448,12 +396,8 @@
       <div class="cBcard"><div class="ic">⚡</div><h3>One-Day Install</h3><p>Most residential yards go from bare dirt to a finished lawn in a single day.</p></div>
     </div>
   </div></section>
-
   <section class="cSteps"><div class="wrap">
-    <div class="cHead">
-      <span class="pill">The Process</span>
-      <h2>From estimate to finished lawn</h2>
-    </div>
+    <div class="cHead"><span class="pill">The Process</span><h2>From estimate to finished lawn</h2></div>
     <div class="cStepGrid">
       <div class="cStepCard"><div class="no"></div><h3>Free Estimate</h3><p>We measure your yard and recommend the right grass, with a written best price.</p></div>
       <div class="cStepCard"><div class="no"></div><h3>Prep &amp; Grade</h3><p>Site cleared, loosened, graded, and raked smooth for drainage and contact.</p></div>
@@ -461,31 +405,42 @@
       <div class="cStepCard"><div class="no"></div><h3>Water &amp; Care</h3><p>Deep first soak plus a first-month plan to get it rooted.</p></div>
     </div>
   </div></section>
-
   <section class="cFeat"><div class="wrap">
     <img src="https://images.pexels.com/photos/9029162/pexels-photo-9029162.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200" alt="Lawn care professional working on a yard">
-    <div>
-      <span class="pill">Built to last</span>
-      <h2>A lawn that roots fast and stays green</h2>
-      <ul class="chk">
-        <li>Warm-season grasses matched to your sun and soil</li>
-        <li>Staggered, tightly butted seams for a seamless knit</li>
-        <li>Rolled for firm root-to-soil contact</li>
-        <li>Deep watering the same day to start rooting</li>
-        <li>Clear first-month care so it takes hold</li>
-      </ul>
-    </div>
+    <div><span class="pill">Built to last</span><h2>A lawn that roots fast and stays green</h2>
+      <ul class="chk"><li>Warm-season grasses matched to your sun and soil</li><li>Staggered, tightly butted seams for a seamless knit</li><li>Rolled for firm root-to-soil contact</li><li>Deep watering the same day to start rooting</li><li>Clear first-month care so it takes hold</li></ul></div>
   </div></section>
-
-  <section class="cCta"><div class="wrap">
-    <div class="cCtaCard">
-      <h2>Get your free sod estimate</h2>
-      <p>Tell us about your yard and we'll handle the rest — prepped, laid, and rooted by a local crew.</p>
-      <button class="btn btn-wht">Get a Free Estimate</button>
-    </div>
-  </div></section>
-  <div class="cFoot">© 2026 <b>TurnKey Sod</b> · Natural sod installation, replacement &amp; delivery · Greater New Orleans</div>
+  <section class="cCta"><div class="wrap"><div class="cCtaCard">
+    <h2>Get your free sod estimate</h2><p>Tell us about your yard and we'll handle the rest — prepped, laid, and rooted by a local crew.</p><button class="btnG">Get a Free Estimate</button>
+  </div></div></section>
 </div>
+</main>
+
+<!-- ===== SHARED BRAND FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-main">
+      <div class="foot-brand">
+        <img src="img/whitelogo.png" alt="TurnKey Sod logo">
+        <p>Natural sod installation, replacement, and delivery for homeowners, landscapers, and contractors across Greater New Orleans.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13 22v-8h2.6l.4-3H13V9c0-.9.2-1.5 1.5-1.5H16V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.7 1.4-3.7 3.9V11H8v3h2v8h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.6A3.4 3.4 0 1012 15.4 3.4 3.4 0 0012 8.6zm0 5.6a2.2 2.2 0 110-4.4 2.2 2.2 0 010 4.4zM16 4H8a4 4 0 00-4 4v8a4 4 0 004 4h8a4 4 0 004-4V8a4 4 0 00-4-4zm2.8 12A2.8 2.8 0 0116 18.8H8A2.8 2.8 0 015.2 16V8A2.8 2.8 0 018 5.2h8A2.8 2.8 0 0118.8 8v8zm-1.3-8.9a.8.8 0 11-1.6 0 .8.8 0 011.6 0z"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.5 3h3l-6.6 7.5L21.5 21h-5.9l-4.3-5.6L6.3 21H3.3l7-8L2.5 3h6l3.9 5.1L17.5 3zm-2.1 16h1.7L8.2 4.8H6.4L15.4 19z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16 4 12 4 12 4s-4 0-6.8.3c-.4 0-1.2 0-2 .9-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.9c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.8.9 1.9.8 2.4.9 1.7.2 6.6.3 6.6.3s4 0 6.8-.3c.4 0 1.2 0 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.9c0-1.7-.2-3.3-.2-3.3zM10 14.6V8.9l5 2.9-5 2.8z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.9 8.8H4V20h2.9V8.8zM5.4 4a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM20 20h-2.9v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10.3V8.8h2.8v1.5h.1c.4-.7 1.3-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5V20z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Explore</h4><ul><li><a href="#">About Us</a></li><li><a href="#">The Team</a></li><li><a href="#">Gallery</a></li><li><a href="#">Testimonials</a></li><li><a href="#">Blog</a></li><li><a href="#">FAQs</a></li></ul></div>
+      <div class="foot-col"><h4>Grass &amp; Services</h4><ul><li><a href="#">St. Augustine Grass</a></li><li><a href="#">Bermuda Grass</a></li><li><a href="#">Zoysia Grass</a></li><li><a href="#">Centipede Grass</a></li><li><a href="#">Installation &amp; Delivery</a></li></ul></div>
+      <div class="foot-contact"><h4>Get In Touch</h4><a class="big" href="#">(504) 569-5437</a><p>Mon&ndash;Sat 8:00AM&ndash;5:00PM<br>Sunday 8:00AM&ndash;4:00PM</p><p>Serving Greater New Orleans, LA</p><button class="fbtn">Get a Free Estimate</button></div>
+    </div>
+    <div class="foot-areas-wrap"><h4>Service Areas</h4><div class="foot-areas">
+      <a href="#">Metairie</a><a href="#">Kenner</a><a href="#">Mandeville</a><a href="#">Slidell</a><a href="#">Covington</a><a href="#">Baton Rouge</a><a href="#">Hammond</a><a href="#">Gretna</a><a href="#">Harahan</a><a href="#">Laplace</a><a href="#">St. Rose</a><a href="#">River Ridge</a><a href="#">Madisonville</a>
+    </div></div>
+    <div class="foot-bottom"><div>© 2026 TurnKey Sod &nbsp;&bull;&nbsp; Bringing NOLA's Charm to Your Backyard</div><div class="fl"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Sitemap</a></div></div>
+  </div>
+</footer>
 
 <script>
   document.querySelectorAll('.switcher button').forEach(function(b){
