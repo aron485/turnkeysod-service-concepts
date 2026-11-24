@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TurnKey Sod — Service Page Concepts</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#0c1c13;color:#1c1a14}
+  /* ---------- Switcher shell ---------- */
+  .switcher{position:sticky;top:0;z-index:9999;background:#0c2817;border-bottom:2px solid #e8b23a;
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 24px}
+  .switcher .brand{font-weight:900;color:#f6efdf;letter-spacing:.02em;font-size:15px}
+  .switcher .brand b{color:#e8b23a}
+  .switcher .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .switcher button{font:inherit;font-weight:800;font-size:13px;cursor:pointer;border:1px solid rgba(246,239,223,.3);
+    background:transparent;color:#f6efdf;padding:9px 16px;border-radius:999px;transition:.15s}
+  .switcher button:hover{border-color:#e8b23a}
+  .switcher button.on{background:#e8b23a;color:#123a22;border-color:#e8b23a}
+  .switcher button .n{opacity:.6;margin-right:6px}
+  .switcher button.on .n{opacity:.8}
+  .concept{display:none}
+  .concept.show{display:block}
+  .note{background:#10361f;color:rgba(246,239,223,.7);font-size:12.5px;text-align:center;padding:9px 20px;letter-spacing:.02em}
+
+  /* ===================================================================
+     CONCEPT A — "BOLD PROCESS"  (maximalist NOLA landing, numbered timeline)
+     =================================================================== */
+  #cpt-a{--f:#14432a;--fd:#0b2415;--gold:#e8b23a;--clay:#c6512e;--cream:#f7f1e3;--paper:#efe6d1;--ink:#1b1a12;
+    background:var(--cream);color:var(--ink);font-family:system-ui,Arial,sans-serif}
+  #cpt-a .hd{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;letter-spacing:-.02em;line-height:1}
+  #cpt-a .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  #cpt-a .btn{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:15px;padding:16px 30px;border-radius:999px;cursor:pointer;border:0}
+  #cpt-a .btn-gold{background:var(--gold);color:var(--f)}
+  #cpt-a .btn-ghost{background:transparent;border:2px solid rgba(246,239,223,.55);color:var(--cream)}
+  /* hero */
+  #cpt-a .aHero{position:relative;overflow:hidden;background:
+    radial-gradient(800px 500px at 88% -10%,rgba(232,178,58,.22),transparent 60%),
+    linear-gradient(155deg,var(--f),var(--fd))}
+  #cpt-a .aHero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding-top:70px;padding-bottom:78px}
+  #cpt-a .aKick{color:var(--gold);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+  #cpt-a .aHero h1{color:var(--cream);font-size:clamp(44px,6vw,86px);margin:16px 0 18px}
+  #cpt-a .aHero h1 .out{-webkit-text-stroke:2px var(--gold);color:transparent}
+  #cpt-a .aHero p{color:rgba(246,239,223,.9);font-size:19px;line-height:1.6;max-width:46ch;margin-bottom:30px}
+  #cpt-a .aCtas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  #cpt-a .aHero .phone{color:var(--cream);font-weight:900;font-size:18px}
+  #cpt-a .aHero .phone span{color:var(--gold)}
+  #cpt-a .aMedia{position:relative}
+  #cpt-a .aMedia .ph{border-radius:24px;overflow:hidden;border:6px solid rgba(247,241,227,.92);box-shadow:0 50px 90px -30px rgba(0,0,0,.75);transform:rotate(2deg)}
+  #cpt-a .aMedia .ph img{height:470px;width:100%;object-fit:cover}
+  #cpt-a .aSeal{position:absolute;left:-26px;bottom:-26px;width:138px;height:138px;border-radius:50%;background:var(--gold);color:var(--f);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:6px solid var(--fd);box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transform:rotate(-8deg)}
+  #cpt-a .aSeal b{font-family:"Arial Black",sans-serif;font-size:34px;line-height:1}
+  #cpt-a .aSeal span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+  /* stats */
+  #cpt-a .aStats{background:var(--fd);border-top:3px solid var(--gold)}
+  #cpt-a .aStats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:0}
+  #cpt-a .aStats .st{text-align:center;padding:30px 16px;border-right:1px solid rgba(246,239,223,.12);color:var(--cream)}
+  #cpt-a .aStats .st:last-child{border-right:0}
+  #cpt-a .aStats .st b{display:block;font-family:"Arial Black",sans-serif;color:var(--gold);font-size:42px;line-height:1}
+  #cpt-a .aStats .st span{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.82;margin-top:8px}
+  /* process timeline */
+  #cpt-a .aProc{padding:86px 0;position:relative}
+  #cpt-a .aProc .lead{max-width:620px;margin-bottom:48px}
+  #cpt-a .aProc .lead .k{color:var(--clay);font-weight:900;letter-spacing:.1em;text-transform:uppercase;font-size:13px}
+  #cpt-a .aProc .lead h2{font-size:clamp(32px,4.4vw,52px);color:var(--f);margin:10px 0 0}
+  #cpt-a .aSteps{position:relative;display:grid;gap:0}
+  #cpt-a .aSteps::before{content:"";position:absolute;left:33px;top:20px;bottom:20px;width:3px;background:linear-gradient(var(--gold),var(--clay))}
+  #cpt-a .aStep{position:relative;display:grid;grid-template-columns:70px 1fr;gap:28px;padding:22px 0;align-items:start}
+  #cpt-a .aStep .num{width:70px;height:70px;border-radius:18px;background:var(--f);color:var(--gold);font-family:"Arial Black",sans-serif;font-size:24px;
+    display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 14px 30px -12px rgba(20,67,42,.6)}
+  #cpt-a .aStep h3{font-family:"Arial Black",sans-serif;font-size:21px;color:var(--f);margin-bottom:7px}
+  #cpt-a .aStep p{color:#45492f;line-height:1.7;max-width:62ch}
+  /* feature cards */
+  #cpt-a .aWhy{background:var(--f);padding:84px 0;position:relative;overflow:hidden}
+  #cpt-a .aWhy h2{color:var(--cream);font-family:"Arial Black",sans-serif;font-size:clamp(30px,4vw,46px);text-align:center;margin-bottom:12px}
+  #cpt-a .aWhy .sub{color:rgba(246,239,223,.72);text-align:center;max-width:56ch;margin:0 auto 46px;line-height:1.6}
+  #cpt-a .aGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  #cpt-a .aCard{background:rgba(247,241,227,.06);border:1px solid rgba(232,178,58,.25);border-radius:18px;padding:30px 26px}
+  #cpt-a .aCard .ic{width:54px;height:54px;border-radius:14px;background:var(--gold);color:var(--f);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
+  #cpt-a .aCard h3{color:var(--cream);font-family:"Arial Black",sans-serif;font-size:19px;margin-bottom:9px}
+  #cpt-a .aCard p{color:rgba(246,239,223,.78);line-height:1.6;font-size:15px}
+  /* gallery */
+  #cpt-a .aGal{padding:84px 0}
+  #cpt-a .aGal h2{text-align:center;font-family:"Arial Black",sans-serif;color:var(--f);font-size:clamp(28px,3.6vw,42px);margin-bottom:34px}
+  #cpt-a .aGalGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  #cpt-a .aGalGrid img{height:210px;width:100%;object-fit:cover;border-radius:14px}
+  #cpt-a .aGalGrid a:first-child{grid-column:span 2;grid-row:span 2}
+  #cpt-a .aGalGrid a:first-child img{height:434px}
+  /* final cta */
+  #cpt-a .aCta{position:relative;padding:92px 0;text-align:center;color:var(--cream);
+    background:linear-gradient(rgba(12,36,21,.82),rgba(12,36,21,.9)),url('https://images.pexels.com/photos/8143668/pexels-photo-8143668.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200') center/cover}
+  #cpt-a .aCta h2{font-family:"Arial Black",sans-serif;font-size:clamp(34px,5vw,62px);margin-bottom:16px}
+  #cpt-a .aCta p{color:rgba(246,239,223,.9);font-size:19px;max-width:48ch;margin:0 auto 30px;line-height:1.6}
+  #cpt-a .aFoot{background:var(--fd);color:rgba(246,239,223,.65);text-align:center;padding:26px;font-size:13px}
+  #cpt-a .aFoot b{color:var(--gold)}
+  @media(max-width:900px){
+    #cpt-a .aHero .wrap{grid-template-columns:1fr;gap:40px}
+    #cpt-a .aStats .wrap{grid-template-columns:repeat(2,1fr)}
+    #cpt-a .aGrid{grid-template-columns:1fr}
+    #cpt-a .aGalGrid{grid-template-columns:repeat(2,1fr)}
+    #cpt-a .aGalGrid a:first-child{grid-column:span 2}
+    #cpt-a .aGalGrid a:first-child img,#cpt-a .aGalGrid img{height:200px}
+  }
+
+  /* ===================================================================
+     CONCEPT B — "EDITORIAL SPLIT"  (refined magazine, alternating image/text)
+     =================================================================== */
+  #cpt-b{--g:#1d3b2a;--gd:#122619;--olive:#7f9b5b;--sand:#efe7d6;--sand2:#e5dac2;--ink:#24291f;
+    background:var(--sand);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+  #cpt-b .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  #cpt-b .sans{font-family:"Helvetica Neue",Arial,sans-serif}
+  #cpt-b .k{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:11.5px;color:var(--olive)}
+  #cpt-b .btn{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:14px;letter-spacing:.03em;padding:15px 32px;cursor:pointer;border:0}
+  #cpt-b .btn-dk{background:var(--g);color:var(--sand)}
+  #cpt-b .btn-ol{background:var(--olive);color:#fff}
+  #cpt-b .btn-out{border:1.5px solid var(--g);color:var(--g);background:transparent}
+  /* hero — full-bleed image w/ overlaid plate */
+  #cpt-b .bHero{position:relative;min-height:620px;display:flex;align-items:center;
+    background:linear-gradient(90deg,rgba(18,38,25,.72),rgba(18,38,25,.15)),url('https://images.pexels.com/photos/3958954/pexels-photo-3958954.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600') center/cover}
+  #cpt-b .bHero .plate{max-width:600px;color:#fff;padding:60px 0}
+  #cpt-b .bHero .k{color:#cde0a8}
+  #cpt-b .bHero h1{font-size:clamp(40px,5.2vw,68px);line-height:1.05;margin:18px 0 20px;font-weight:400}
+  #cpt-b .bHero h1 em{font-style:italic;color:#d9e8bb}
+  #cpt-b .bHero p{font-size:19px;line-height:1.7;max-width:48ch;margin-bottom:28px;color:rgba(255,255,255,.9)}
+  #cpt-b .bHero .acts{display:flex;gap:14px;flex-wrap:wrap}
+  /* trust ribbon */
+  #cpt-b .bTrust{background:var(--g);color:var(--sand)}
+  #cpt-b .bTrust .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:20px 32px}
+  #cpt-b .bTrust div{font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px}
+  #cpt-b .bTrust div b{color:#cde0a8;font-size:20px}
+  /* intro statement */
+  #cpt-b .bIntro{padding:84px 0;text-align:center}
+  #cpt-b .bIntro p{font-size:clamp(23px,2.8vw,33px);line-height:1.5;max-width:20ch;margin:14px auto 0;max-width:760px;color:#2c3322}
+  #cpt-b .bIntro p b{color:var(--g)}
+  /* alternating splits */
+  #cpt-b .bSplit{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
+  #cpt-b .bSplit .img{min-height:460px;background-size:cover;background-position:center}
+  #cpt-b .bSplit .txt{padding:70px 7%}
+  #cpt-b .bSplit.alt{background:var(--sand2)}
+  #cpt-b .bSplit.alt .bNum{color:var(--olive)}
+  #cpt-b .bNum{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:15px;color:var(--olive);letter-spacing:.1em}
+  #cpt-b .bSplit h2{font-size:clamp(28px,3.4vw,40px);font-weight:400;color:var(--g);margin:10px 0 16px;line-height:1.15}
+  #cpt-b .bSplit p{font-size:17px;line-height:1.8;color:#3a4030;margin-bottom:14px;max-width:52ch}
+  #cpt-b .bSplit ul{list-style:none;display:grid;gap:10px;margin-top:6px}
+  #cpt-b .bSplit li{font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;color:#3a4030;padding-left:26px;position:relative}
+  #cpt-b .bSplit li::before{content:"✦";position:absolute;left:0;color:var(--olive)}
+  /* gallery strip */
+  #cpt-b .bGal{padding:84px 0 20px;text-align:center}
+  #cpt-b .bGal .k{display:block;margin-bottom:10px}
+  #cpt-b .bGal h2{font-size:clamp(28px,3.4vw,42px);font-weight:400;color:var(--g);margin-bottom:34px}
+  #cpt-b .bGalRow{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+  #cpt-b .bGalRow img{height:260px;width:100%;object-fit:cover;filter:saturate(.95)}
+  /* testimonial */
+  #cpt-b .bQuote{padding:90px 0;text-align:center}
+  #cpt-b .bQuote .mark{font-size:70px;color:var(--olive);line-height:.4;font-family:Georgia,serif}
+  #cpt-b .bQuote blockquote{font-size:clamp(24px,3vw,34px);line-height:1.5;max-width:900px;margin:0 auto 22px;color:var(--g);font-style:italic}
+  #cpt-b .bQuote cite{font-family:"Helvetica Neue",Arial,sans-serif;font-style:normal;font-weight:700;font-size:14px;letter-spacing:.04em;color:#54604040;color:#54604a}
+  /* cta */
+  #cpt-b .bCta{background:var(--g);color:var(--sand);text-align:center;padding:84px 32px}
+  #cpt-b .bCta h2{font-size:clamp(32px,4.4vw,52px);font-weight:400;margin-bottom:16px}
+  #cpt-b .bCta p{font-family:"Helvetica Neue",Arial,sans-serif;font-size:17px;color:rgba(239,231,214,.8);max-width:46ch;margin:0 auto 28px;line-height:1.6}
+  #cpt-b .bFoot{background:var(--gd);color:rgba(239,231,214,.6);text-align:center;padding:24px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px}
+  @media(max-width:860px){
+    #cpt-b .bSplit{grid-template-columns:1fr}
+    #cpt-b .bSplit .img{min-height:300px;order:-1}
+    #cpt-b .bGalRow{grid-template-columns:repeat(2,1fr)}
+    #cpt-b .bGalRow img{height:200px}
+  }
+
+  /* ===================================================================
+     CONCEPT C — "MODERN GRID"  (clean, airy, card-based, emerald)
+     =================================================================== */
+  #cpt-c{--em:#157347;--em2:#0f5c38;--mint:#e8f5ee;--mint2:#d6ecdf;--ink:#16241d;--slate:#55675d;
+    background:#fff;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+  #cpt-c .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  #cpt-c .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:12px;cursor:pointer;border:0}
+  #cpt-c .btn-em{background:var(--em);color:#fff;box-shadow:0 12px 24px -10px rgba(21,115,71,.6)}
+  #cpt-c .btn-soft{background:var(--mint);color:var(--em2)}
+  #cpt-c .pill{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--em2);font-weight:700;font-size:13px;padding:7px 15px;border-radius:999px}
+  /* hero — text + framed image + floating stat card */
+  #cpt-c .cHero{background:linear-gradient(180deg,var(--mint) 0%,#fff 100%);padding:60px 0 70px}
+  #cpt-c .cHero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:50px;align-items:center}
+  #cpt-c .cHero h1{font-size:clamp(38px,4.8vw,60px);line-height:1.08;letter-spacing:-.02em;margin:18px 0 18px;font-weight:800}
+  #cpt-c .cHero h1 span{color:var(--em)}
+  #cpt-c .cHero p{font-size:18px;line-height:1.65;color:var(--slate);max-width:44ch;margin-bottom:26px}
+  #cpt-c .cHero .acts{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  #cpt-c .cHero .mini{display:flex;gap:22px;margin-top:28px;flex-wrap:wrap}
+  #cpt-c .cHero .mini b{display:block;font-size:26px;color:var(--em);font-weight:800}
+  #cpt-c .cHero .mini span{font-size:13px;color:var(--slate)}
+  #cpt-c .cHeroMedia{position:relative}
+  #cpt-c .cHeroMedia>img{border-radius:22px;height:460px;width:100%;object-fit:cover;box-shadow:0 30px 60px -24px rgba(21,41,29,.4)}
+  #cpt-c .cFloat{position:absolute;right:-14px;bottom:28px;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:0 24px 50px -18px rgba(21,41,29,.35);display:flex;align-items:center;gap:12px}
+  #cpt-c .cFloat .dot{width:44px;height:44px;border-radius:12px;background:var(--mint);color:var(--em);display:flex;align-items:center;justify-content:center;font-size:22px}
+  #cpt-c .cFloat b{font-size:15px}
+  #cpt-c .cFloat span{font-size:12.5px;color:var(--slate)}
+  /* logos / trust bar */
+  #cpt-c .cTrust{border-top:1px solid #eef2ef;border-bottom:1px solid #eef2ef}
+  #cpt-c .cTrust .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px;padding:22px 28px}
+  #cpt-c .cTrust .pill{background:#fff;border:1px solid #e4ece7;color:var(--em2)}
+  /* section head */
+  #cpt-c .cHead{text-align:center;max-width:620px;margin:0 auto 44px}
+  #cpt-c .cHead h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.02em;margin:12px 0 10px}
+  #cpt-c .cHead p{color:var(--slate);font-size:16.5px;line-height:1.6}
+  /* benefits grid */
+  #cpt-c .cBenefits{padding:84px 0}
+  #cpt-c .cBgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  #cpt-c .cBcard{background:#fff;border:1px solid #e9efea;border-radius:18px;padding:30px 26px;transition:.2s}
+  #cpt-c .cBcard:hover{box-shadow:0 24px 50px -26px rgba(21,41,29,.3);transform:translateY(-3px)}
+  #cpt-c .cBcard .ic{width:52px;height:52px;border-radius:14px;background:var(--mint);color:var(--em);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:16px}
+  #cpt-c .cBcard h3{font-size:18.5px;font-weight:700;margin-bottom:8px}
+  #cpt-c .cBcard p{color:var(--slate);line-height:1.6;font-size:15px}
+  /* steps tracker */
+  #cpt-c .cSteps{background:var(--mint);padding:84px 0}
+  #cpt-c .cStepGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:cs}
+  #cpt-c .cStepCard{background:#fff;border-radius:18px;padding:28px 22px;position:relative}
+  #cpt-c .cStepCard .no{counter-increment:cs;width:40px;height:40px;border-radius:50%;background:var(--em);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  #cpt-c .cStepCard .no::before{content:counter(cs,decimal-leading-zero)}
+  #cpt-c .cStepCard h3{font-size:17px;font-weight:700;margin-bottom:7px}
+  #cpt-c .cStepCard p{color:var(--slate);font-size:14px;line-height:1.55}
+  /* split feature */
+  #cpt-c .cFeat{padding:88px 0}
+  #cpt-c .cFeat .wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  #cpt-c .cFeat img{border-radius:20px;height:420px;width:100%;object-fit:cover;box-shadow:0 26px 54px -26px rgba(21,41,29,.35)}
+  #cpt-c .cFeat h2{font-size:clamp(28px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;margin:12px 0 16px}
+  #cpt-c .cFeat .chk{list-style:none;display:grid;gap:14px;margin-top:8px}
+  #cpt-c .cFeat .chk li{padding-left:36px;position:relative;color:#374a40;line-height:1.5}
+  #cpt-c .cFeat .chk li::before{content:"✓";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:7px;background:var(--mint);color:var(--em);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+  /* cta card */
+  #cpt-c .cCta{padding:20px 0 90px}
+  #cpt-c .cCtaCard{background:linear-gradient(135deg,var(--em),var(--em2));border-radius:28px;padding:66px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
+  #cpt-c .cCtaCard::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.08);right:-90px;top:-120px}
+  #cpt-c .cCtaCard h2{font-size:clamp(30px,4vw,48px);font-weight:800;margin-bottom:14px;position:relative}
+  #cpt-c .cCtaCard p{color:rgba(255,255,255,.85);font-size:17px;max-width:46ch;margin:0 auto 26px;position:relative;line-height:1.6}
+  #cpt-c .cCtaCard .btn-wht{background:#fff;color:var(--em2);position:relative}
+  #cpt-c .cFoot{background:#0f1c16;color:rgba(255,255,255,.6);text-align:center;padding:24px;font-size:13px}
+  #cpt-c .cFoot b{color:#7fe0ad}
+  @media(max-width:900px){
+    #cpt-c .cHero .wrap,#cpt-c .cFeat .wrap{grid-template-columns:1fr;gap:36px}
+    #cpt-c .cBgrid{grid-template-columns:1fr}
+    #cpt-c .cStepGrid{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<div class="switcher">
+  <div class="brand"><b>TurnKey Sod</b> — Service Page Concepts</div>
+  <div class="tabs">
+    <button class="on" data-c="cpt-a"><span class="n">01</span>Bold Process</button>
+    <button data-c="cpt-b"><span class="n">02</span>Editorial Split</button>
+    <button data-c="cpt-c"><span class="n">03</span>Modern Grid</button>
+  </div>
+</div>
+<div class="note">Sample content &amp; stock imagery for layout direction only — pick a lane and I'll build it out with the real sod copy.</div>
+
+<!-- ============ CONCEPT A ============ -->
+<div class="concept show" id="cpt-a">
+  <section class="aHero">
+    <div class="wrap">
+      <div class="aText">
+        <div class="aKick">New Orleans Sod Installation</div>
+        <h1 class="hd">FRESH SOD.<br><span class="out">INSTALLED</span> RIGHT.</h1>
+        <p>From bare, graded dirt to a finished, deep-green lawn in a single day — laid tight, rolled firm, and watered in by a local crew that does it right the first time.</p>
+        <div class="aCtas">
+          <button class="btn btn-gold">Get a Free Estimate</button>
+          <a class="phone">📞 <span>(504) 569-5437</span></a>
+        </div>
+      </div>
+      <div class="aMedia">
+        <div class="ph"><img src="https://images.pexels.com/photos/5231241/pexels-photo-5231241.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Worker unrolling fresh sod onto prepared soil"></div>
+        <div class="aSeal"><b>1&nbsp;Day</b><span>Install</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="aStats"><div class="wrap">
+    <div class="st"><b>13</b><span>Cities Served</span></div>
+    <div class="st"><b>4</b><span>Grass Varieties</span></div>
+    <div class="st"><b>1 Day</b><span>Typical Install</span></div>
+    <div class="st"><b>Local</b><span>NOLA Crew</span></div>
+  </div></section>
+
+  <section class="aProc"><div class="wrap">
+    <div class="lead">
+      <div class="k">How It Works</div>
+      <h2 class="hd">Your install day, step by step</h2>
+    </div>
+    <div class="aSteps">
+      <div class="aStep"><div class="num">01</div><div><h3>Free On-Site Measure</h3><p>We walk your yard, confirm square footage, recommend the right grass for your sun and soil, and hand you a written best-price estimate.</p></div></div>
+      <div class="aStep"><div class="num">02</div><div><h3>Ground Prep &amp; Grading</h3><p>The site is cleared, loosened, graded, and raked smooth so every roll makes firm contact and water drains the way it should.</p></div></div>
+      <div class="aStep"><div class="num">03</div><div><h3>Fresh Sod, Laid Tight</h3><p>Pallets are cut close to delivery day and staged in the shade. Pieces go down along a straight edge with staggered, tightly butted seams.</p></div></div>
+      <div class="aStep"><div class="num">04</div><div><h3>Rolled &amp; Watered In</h3><p>The whole lawn is rolled to press roots into the soil, then given a deep first soak that kicks off rooting the same afternoon.</p></div></div>
+    </div>
+  </div></section>
+
+  <section class="aWhy"><div class="wrap">
+    <h2 class="hd">Why homeowners call TurnKey</h2>
+    <p class="sub">A finished lawn is the easy part. Doing it so it roots fast and lasts is the whole job.</p>
+    <div class="aGrid">
+      <div class="aCard"><div class="ic">🌱</div><h3>Locally Grown Sod</h3><p>Grass cut fresh and timed to your install, not trucked in and left to yellow on a retail lot.</p></div>
+      <div class="aCard"><div class="ic">🛡️</div><h3>Licensed &amp; Insured</h3><p>A professional, insured crew on your property — with a best-price guarantee in writing.</p></div>
+      <div class="aCard"><div class="ic">💧</div><h3>Rooting Game-Plan</h3><p>You leave with a simple first-month watering and mowing schedule so the lawn takes hold.</p></div>
+    </div>
+  </div></section>
+
+  <section class="aGal"><div class="wrap">
+    <h2 class="hd">Recent New Orleans lawns</h2>
+    <div class="aGalGrid">
+      <a><img src="https://images.pexels.com/photos/11654274/pexels-photo-11654274.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Lush freshly installed green lawn beside a home"></a>
+      <a><img src="https://images.pexels.com/photos/5231236/pexels-photo-5231236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Rolls of fresh sod staged on a driveway"></a>
+      <a><img src="https://images.pexels.com/photos/6573261/pexels-photo-6573261.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Hands laying a strip of sod"></a>
+      <a><img src="https://images.pexels.com/photos/17261493/pexels-photo-17261493.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Partly sodded yard mid-installation"></a>
+      <a><img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Healthy manicured green lawn"></a>
+    </div>
+  </div></section>
+
+  <section class="aCta">
+    <h2 class="hd">Ready for a lush new lawn?</h2>
+    <p>Get a free on-site estimate from New Orleans' trusted sod crew — best price, guaranteed.</p>
+    <button class="btn btn-gold">Get a Free Estimate</button>
+  </section>
+  <div class="aFoot">© 2026 <b>TurnKey Sod</b> · Natural sod installation, replacement &amp; delivery · Greater New Orleans</div>
+</div>
+
+<!-- ============ CONCEPT B ============ -->
+<div class="concept" id="cpt-b">
+  <section class="bHero"><div class="wrap"><div class="plate">
+    <span class="k">Sod Installation · New Orleans</span>
+    <h1>A greener lawn,<br><em>professionally laid.</em></h1>
+    <p>We prep, lay, and root fresh-grown sod so your yard goes from tired dirt to a lawn that looks like it has always been there.</p>
+    <div class="acts">
+      <button class="btn btn-ol">Request an Estimate</button>
+      <button class="btn btn-out" style="border-color:rgba(255,255,255,.6);color:#fff">Call (504) 569-5437</button>
+    </div>
+  </div></div></section>
+
+  <div class="bTrust"><div class="wrap">
+    <div><b>✓</b> Licensed &amp; Insured</div>
+    <div><b>✓</b> Best-Price Guarantee</div>
+    <div><b>✓</b> Locally Grown Sod</div>
+    <div><b>✓</b> Free On-Site Estimates</div>
+  </div></div>
+
+  <section class="bIntro"><div class="wrap">
+    <span class="k">The TurnKey Difference</span>
+    <p>Good sod is the easy part. Grading, tight seams, and a proper first soak are what make a lawn <b>root fast and stay green</b> through a Gulf-Coast summer.</p>
+  </div></section>
+
+  <section class="bSplit">
+    <div class="img" style="background-image:url('https://images.pexels.com/photos/9029162/pexels-photo-9029162.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200')"></div>
+    <div class="txt">
+      <span class="bNum">01 — Prep</span>
+      <h2>We get the ground right first</h2>
+      <p>Before a single roll goes down, the site is cleared, loosened, graded, and raked smooth. On our heavy clay soils, drainage and grade matter as much as the grass itself.</p>
+      <ul><li>Debris &amp; old turf cleared</li><li>Soil loosened and leveled</li><li>Drainage checked for flat NOLA lots</li></ul>
+    </div>
+  </section>
+  <section class="bSplit alt">
+    <div class="txt">
+      <span class="bNum">02 — Lay</span>
+      <h2>Fresh sod, tight seams, rolled firm</h2>
+      <p>Pallets are cut close to delivery day and staged in shade. Pieces are laid along a straight edge with staggered, tightly butted seams, then the whole lawn is rolled into firm contact.</p>
+      <ul><li>Cut fresh, never left to dry</li><li>Staggered, seamless joints</li><li>Rolled for root-to-soil contact</li></ul>
+    </div>
+    <div class="img" style="background-image:url('https://images.pexels.com/photos/5231236/pexels-photo-5231236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200')"></div>
+  </section>
+  <section class="bSplit">
+    <div class="img" style="background-image:url('https://images.pexels.com/photos/11654274/pexels-photo-11654274.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200')"></div>
+    <div class="txt">
+      <span class="bNum">03 — Root</span>
+      <h2>A lawn that takes hold</h2>
+      <p>We water in deeply the same day and send you off with a simple first-month schedule. New sod roots in about two to three weeks and is ready for its first mow soon after.</p>
+      <ul><li>Deep first-day soak</li><li>First-month care plan</li><li>Best-price guarantee</li></ul>
+    </div>
+  </section>
+
+  <section class="bGal"><div class="wrap">
+    <span class="k">Our Work</span>
+    <h2>Fresh lawns across Greater New Orleans</h2>
+  </div>
+  <div class="bGalRow">
+    <img src="https://images.pexels.com/photos/6573261/pexels-photo-6573261.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Laying a strip of fresh sod by hand">
+    <img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Neatly manicured green lawn">
+    <img src="https://images.pexels.com/photos/17261493/pexels-photo-17261493.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Yard mid-installation with fresh sod">
+    <img src="https://images.pexels.com/photos/3958954/pexels-photo-3958954.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=900" alt="Home with a healthy front lawn">
+  </div></section>
+
+  <section class="bQuote"><div class="wrap">
+    <div class="mark">&ldquo;</div>
+    <blockquote>They graded the yard, laid the sod in an afternoon, and walked us through watering. Two weeks later it had rooted in and looked incredible.</blockquote>
+    <cite>— Homeowner, Metairie</cite>
+  </div></section>
+
+  <section class="bCta">
+    <h2>Let's lay your new lawn</h2>
+    <p>Tell us about your yard and we'll schedule a free on-site measure — no pressure, just the best price in town.</p>
+    <button class="btn btn-ol">Request a Free Estimate</button>
+  </section>
+  <div class="bFoot">© 2026 TurnKey Sod · Sod installation, replacement &amp; delivery · Greater New Orleans</div>
+</div>
+
+<!-- ============ CONCEPT C ============ -->
+<div class="concept" id="cpt-c">
+  <section class="cHero"><div class="wrap">
+    <div class="cHtext">
+      <span class="pill">🌿 New Orleans Sod Experts</span>
+      <h1>Professional <span>sod installation</span>, done in a day.</h1>
+      <p>A local crew preps, lays, and roots fresh-grown sod so you skip the retail middleman — and the guesswork — and get a lawn that lasts.</p>
+      <div class="acts">
+        <button class="btn btn-em">Get a Free Estimate</button>
+        <button class="btn btn-soft">📞 (504) 569-5437</button>
+      </div>
+      <div class="mini">
+        <div><b>13</b><span>Cities served</span></div>
+        <div><b>4</b><span>Grass types</span></div>
+        <div><b>1 day</b><span>Typical install</span></div>
+      </div>
+    </div>
+    <div class="cHeroMedia">
+      <img src="https://images.pexels.com/photos/16101561/pexels-photo-16101561.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200" alt="Healthy green lawn in front of a home">
+      <div class="cFloat"><div class="dot">✓</div><div><b>Best-Price Guarantee</b><br><span>In writing, every job</span></div></div>
+    </div>
+  </div></section>
+
+  <div class="cTrust"><div class="wrap">
+    <span class="pill">Licensed &amp; Insured</span>
+    <span class="pill">Locally Grown Sod</span>
+    <span class="pill">Free On-Site Estimates</span>
+    <span class="pill">St. Augustine · Bermuda · Zoysia · Centipede</span>
+  </div></div>
+
+  <section class="cBenefits"><div class="wrap">
+    <div class="cHead">
+      <span class="pill">Why TurnKey</span>
+      <h2>Everything handled, end to end</h2>
+      <p>One crew from the first measure to the first mow — no coordinating suppliers, no sod drying out in a parking lot.</p>
+    </div>
+    <div class="cBgrid">
+      <div class="cBcard"><div class="ic">🌱</div><h3>Fresh, Local Sod</h3><p>Cut close to your install date and timed to the weather so it roots fast and holds its color.</p></div>
+      <div class="cBcard"><div class="ic">📐</div><h3>Proper Prep</h3><p>Grading and drainage dialed in for flat, clay-heavy New Orleans yards before the first roll.</p></div>
+      <div class="cBcard"><div class="ic">💧</div><h3>Rooting Plan</h3><p>A simple first-month watering and mowing schedule so your new lawn actually takes hold.</p></div>
+      <div class="cBcard"><div class="ic">🛡️</div><h3>Insured Crew</h3><p>Licensed, insured, and backed by a best-price guarantee on every installation.</p></div>
+      <div class="cBcard"><div class="ic">📍</div><h3>13 Cities</h3><p>Serving Metairie, Kenner, Mandeville, Slidell, Covington and across Greater New Orleans.</p></div>
+      <div class="cBcard"><div class="ic">⚡</div><h3>One-Day Install</h3><p>Most residential yards go from bare dirt to a finished lawn in a single day.</p></div>
+    </div>
+  </div></section>
+
+  <section class="cSteps"><div class="wrap">
+    <div class="cHead">
+      <span class="pill">The Process</span>
+      <h2>From estimate to finished lawn</h2>
+    </div>
+    <div class="cStepGrid">
+      <div class="cStepCard"><div class="no"></div><h3>Free Estimate</h3><p>We measure your yard and recommend the right grass, with a written best price.</p></div>
+      <div class="cStepCard"><div class="no"></div><h3>Prep &amp; Grade</h3><p>Site cleared, loosened, graded, and raked smooth for drainage and contact.</p></div>
+      <div class="cStepCard"><div class="no"></div><h3>Lay &amp; Roll</h3><p>Fresh sod laid with tight seams, then rolled firm into the soil.</p></div>
+      <div class="cStepCard"><div class="no"></div><h3>Water &amp; Care</h3><p>Deep first soak plus a first-month plan to get it rooted.</p></div>
+    </div>
+  </div></section>
+
+  <section class="cFeat"><div class="wrap">
+    <img src="https://images.pexels.com/photos/9029162/pexels-photo-9029162.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200" alt="Lawn care professional working on a yard">
+    <div>
+      <span class="pill">Built to last</span>
+      <h2>A lawn that roots fast and stays green</h2>
+      <ul class="chk">
+        <li>Warm-season grasses matched to your sun and soil</li>
+        <li>Staggered, tightly butted seams for a seamless knit</li>
+        <li>Rolled for firm root-to-soil contact</li>
+        <li>Deep watering the same day to start rooting</li>
+        <li>Clear first-month care so it takes hold</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="cCta"><div class="wrap">
+    <div class="cCtaCard">
+      <h2>Get your free sod estimate</h2>
+      <p>Tell us about your yard and we'll handle the rest — prepped, laid, and rooted by a local crew.</p>
+      <button class="btn btn-wht">Get a Free Estimate</button>
+    </div>
+  </div></section>
+  <div class="cFoot">© 2026 <b>TurnKey Sod</b> · Natural sod installation, replacement &amp; delivery · Greater New Orleans</div>
+</div>
+
+<script>
+  document.querySelectorAll('.switcher button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.switcher button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      document.querySelectorAll('.concept').forEach(function(c){c.classList.remove('show')});
+      document.getElementById(b.dataset.c).classList.add('show');
+      window.scrollTo({top:0,behavior:'instant'});
+    });
+  });
+</script>
+</body>
+</html>
